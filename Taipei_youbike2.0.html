@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      width: 250px;
+    }
+  </style>
+  <body>
+    <div class="container"></div>
+	<p><span id='view'></span></p>
+  </body>
+  <script>
+   var openUrl= "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
+var xhr = new XMLHttpRequest();
+xhr.open('GET',openUrl,true);
+xhr.send();
+xhr.onreadystatechange = function(){
+ if(this.readyState === 4 && this.status === 200){
+ var data = JSON.parse(this.responseText);
+ console.log(data);
+  for (var i = 0; i < data.length; i++) {
+	  view.innerHTML += '場站中文名稱 : ' + data[i].sna + ',  區域地址 : '+ data[i].sarea + data[i].ar
+	  + ',  場站總停車格 : ' + data[i].tot 
+	  + ',  場站目前車輛數量 : ' + data[i].sbi + ',  空位數量 : ' + data[i].bemp
+	  + ' , 資料更新時間 : ' + data[i].mday
+	  + '<br>' ;
+  }
+ }
+};
+  </script>
+</html>
+	  
+
+	  
