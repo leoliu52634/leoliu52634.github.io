@@ -10,29 +10,16 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="ALL.js"></script>
   </head>
 <script>
-$(document).ready(function(){
-  var openUrl= "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
-  var t = $('#Main_DataTable').DataTable({
-    pageLength: 100
-    });    
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET',openUrl,true);
-  xhr.send();
-  xhr.onreadystatechange = function(){
-  if(this.readyState === 4 && this.status === 200){
-    var data = JSON.parse(this.responseText);
-    data = data.slice(0,300);
-    for (var i = 0; i < data.length; i++) {   
-      t.row.add([data[i].sna,data[i].sarea + data[i].ar,data[i].tot,data[i].sbi,data[i].bemp,data[i].mday]).draw(); 
-    }
-  }};
-});
 </script>
 <style>
+h2{color:#ff0000};
 </style>
 <body>
+<h2>台北YouBike2.0資訊查詢系統</h2>
+<hr>
   <table id="Main_DataTable" class="table table-striped" style="width:100%">
   <thead>
     <tr>
