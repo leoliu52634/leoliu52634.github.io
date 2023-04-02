@@ -1,39 +1,51 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
   </head>
-  <style>
-    img {
-      width: 250px;
+<script>
+$(document).ready(function(){
+  var openUrl= "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
+  var t = $('#Main_DataTable').DataTable({
+    pageLength: 100
+    });    
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET',openUrl,true);
+  xhr.send();
+  xhr.onreadystatechange = function(){
+  if(this.readyState === 4 && this.status === 200){
+    var data = JSON.parse(this.responseText);
+    data = data.slice(0,300);
+    for (var i = 0; i < data.length; i++) {   
+      t.row.add([data[i].sna,data[i].sarea + data[i].ar,data[i].tot,data[i].sbi,data[i].bemp,data[i].mday]).draw(); 
     }
-  </style>
-  <body>
-    <div class="container"></div>
-	<p><span id='view'></span></p>
-  </body>
-  <script>
-   var openUrl= "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
-var xhr = new XMLHttpRequest();
-xhr.open('GET',openUrl,true);
-xhr.send();
-xhr.onreadystatechange = function(){
- if(this.readyState === 4 && this.status === 200){
- var data = JSON.parse(this.responseText);
- console.log(data);
-  for (var i = 0; i < data.length; i++) {
-	  view.innerHTML += '場站中文名稱 : ' + data[i].sna + ',  區域地址 : '+ data[i].sarea + data[i].ar
-	  + ',  場站總停車格 : ' + data[i].tot 
-	  + ',  場站目前車輛數量 : ' + data[i].sbi + ',  空位數量 : ' + data[i].bemp
-	  + ' , 資料更新時間 : ' + data[i].mday
-	  + '<br>' ;
-  }
- }
-};
-  </script>
+  }};
+});
+</script>
+<style>
+</style>
+<body>
+  <table id="Main_DataTable" class="table table-striped" style="width:100%">
+  <thead>
+    <tr>
+    <th>場站中文名稱</th>
+    <th>區域地址</th>
+    <th>場站總停車格</th>
+    <th>場站目前車輛數量</th>
+    <th>空位數量</th>
+    <th>資料更新時間</th>   
+    </tr>
+  </thead>
+  </table>
+</body>
 </html>
 	  
 
