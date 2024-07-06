@@ -11,7 +11,7 @@ $(document).ready(function(){
     var data = JSON.parse(this.responseText);
     data = data.slice(0,300);
     for (var i = 0; i < data.length; i++) {   
-      t.row.add([data[i].sna,data[i].sarea + data[i].ar,data[i].tot,data[i].sbi,data[i].bemp,data[i].mday]).draw(); 
+      t.row.add([data[i].sna.replace("YouBike2.0_",""),data[i].sarea + data[i].ar,data[i].total,data[i].available_rent_bikes>0?`<p1>${data[i].available_rent_bikes}</p1>`:`<p2>${data[i].available_rent_bikes}</p2>`,data[i].available_return_bikes,data[i].mday]).draw(); 
     }
   }};
 });
