@@ -22,7 +22,7 @@ function Taipei(){
   }};
 }
 function Taichung(){
-  var openUrl= "https://datacenter.taichung.gov.tw/swagger/OpenData/86dfad5c-540c-4479-bb7d-d7439d34eeb1";
+  var openUrl= "https://datacenter.taichung.gov.tw/swagger/OpenData/34a848ab-eeb3-44fd-a842-a09cb3209a7d";
   $('#Main_DataTable').DataTable().clear().draw();
   $('#Main_DataTable').DataTable().destroy();
   var t = $('#Main_DataTable').DataTable({
