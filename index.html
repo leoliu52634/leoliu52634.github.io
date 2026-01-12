@@ -22,10 +22,18 @@ p2{color:#ff0000}
 <body>
 <h2>YouBike2.0資訊查詢系統</h2>
 <hr>
-<div class="d-flex fs-5">請選擇縣市：　
+<div class="container my-3">
+  <div class="d-flex fs-5 gap-3"><span>請選擇縣市：</span>
   <div><input type="button" class="btn btn-outline-primary" value="台北" onclick="Taipei()"/></div>
-  <div><input type="button" class="btn btn-outline-info" value="台中" onclick="Taichung()"/></div>
+  <div><input type="button" class="btn btn-outline-info d-none" value="台中" /><a class="btn btn-outline-info"  href="https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ed5ef436-fb62-40ba-9ad7-a165504cd953" download>
+  台中</a></div>
+  <div><p>
+  <button class="btn btn-outline-secondary" onclick="document.getElementById('fileInput').click()">選擇檔案上傳(台中資料匯入)</button>
+  <input type="file" id="fileInput" style="display:none" accept=".json">
+</p></div>
 </div>
+</div>
+
 <hr>
   <table id="Main_DataTable" class="table table-striped" style="width:100%">
   <thead>
